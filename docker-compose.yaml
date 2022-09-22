@@ -1,0 +1,45 @@
+version: '3'
+services:
+  backend:
+    container_name: backend
+    build: ./
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgresDB
+      - mongoDB
+      - redis
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+  postgresDB:
+    container_name: postgresDB
+    image: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+  mongoDB:
+    container_name: mongoDB
+    image: mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - data:/data/db
+  redis:
+    image: redis
+    command: redis-server
+    ports:
+      - '6379:6379'
+    volumes:
+      - cache:/data
+
+volumes:
+  data:
+  dbdata:
+  cache:
