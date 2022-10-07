@@ -15,6 +15,6 @@
 5. Run `docker-compose up` to start all the containers
 6. Connect your PostgreSQL database to your local PgAdmin
 7. Open a terminal and run `redis-cli` to access cached data using Redis commands
-8. Open a terminal and run `docker exec -it mongo bash` then inside the bash run `mongo` to access MongoDB shell. Try `db.logs.find()` to retrieve all logs
+8. Open a terminal and run `docker exec -it mongoDB bash` then inside the bash run `mongosh` to access MongoDB shell. Try `db.logs.find()` to retrieve all logs
 9. Import `postman.json` into **Postman**
 10. Test out the APIs
